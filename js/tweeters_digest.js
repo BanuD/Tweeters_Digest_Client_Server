@@ -1,16 +1,34 @@
-angular.module('TweetersDigest', ['satellizer', 'ngRoute'])
-  .config(function($authProvider) {
+var TweetersDigest = angular.module('TweetersDigest', ['ng-token-auth']);
 
-    $authProvider.twitter({
-      url: 'http://localhost:3000/auth/twitter'
-    });
-
+TweetersDigest.config(function($authProvider) {
+  $authProvider.configure({
+    apiUrl: 'http://localhost:3000',
+    authProviderPaths: {
+      twitter: '/auth/twitter'
+    }
   });
+});
 
-angular.module('TweetersDigest')
-  .controller('LoginCtrl', function($scope, $auth) {
-    console.log('hi')
-    $scope.authenticate = function(provider) {
-      $auth.authenticate(provider);
+TweetersDigest.controller('loginController', function($scope, $http, $auth){
+  $scope.handleBtnClick = function() {
+      $auth.authenticate('twitter')
+        .then(function(resp) {
+          console.log("success!!")
+        })
+        .catch(function(resp) {
+          console.log("failure!!  :(")
+        });
+  };
+
+  $scope.handleSignOutBtnClick = function() {
+      $auth.signOut()
+        .then(function(resp) {
+          // handle success response
+        })
+        .catch(function(resp) {
+          // handle error response
+        });
     };
-  });
+})
+
+
