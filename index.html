@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="TweetersDigest">
+<head>
+  <title>Tweeter's Digest</title>
+  <link href="stylesheets/styles.css" rel="stylesheet">
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-cookie/angular-cookie.js"></script>
+  <script src="/bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
+  <script type="text/javascript" src="js/tweeters_digest.js"></script>
+</head>
+<body>
+  <div ng-controller="loginController">
+    <button ng-click="authenticate('twitter')">
+      Sign in with Twitter
+    </button>
+    <button class="btn btn-primary btn-lg" ng-click='signOut()'>
+      Sign out
+    </button>
+  </div>
+</body>
+</html>
+
