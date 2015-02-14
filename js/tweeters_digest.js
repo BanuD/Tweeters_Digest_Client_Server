@@ -16,7 +16,7 @@ TweetersDigest.controller('loginController', function($scope, $http, $auth){
           console.log("success!!")
         })
         .catch(function(resp) {
-          console.log("failure!!  :(")
+          console.log("failure!!  :( ")
         });
   };
 
