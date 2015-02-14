@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app="TweetersDigest">
+<head>
+  <title>Tweeter's Digest</title>
+  <link href="stylesheets/styles.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+  <script src="//cdn.jsdelivr.net/satellizer/0.9.2/satellizer.min.js"></script>
+  <script type="text/javascript" src="js/tweeters_digest.js"></script>
+</head>
+<body>
+  <div ng-controller="LoginCtrl">
+    <button ng-click="authenticate('twitter')">Sign in with Twitter</button>
+  </div>
+</body>
+</html>
