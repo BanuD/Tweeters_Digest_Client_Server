@@ -11,24 +11,49 @@ TweetersDigest.config(function($authProvider) {
 
 TweetersDigest.controller('loginController', function($scope, $http, $auth){
   $scope.handleBtnClick = function() {
-      $auth.authenticate('twitter')
-        .then(function(resp) {
-          console.log("success!!")
-        })
-        .catch(function(resp) {
-          console.log("failure!!  :( ")
-        });
+    // $scope
+    $auth.authenticate('twitter')
+      .then(function(resp) {
+        // debugger;
+        console.log("success!!")
+      })
+      .catch(function(resp) {
+        // debugger;
+        console.log("failure!!  :( ")
+      });
   };
-
-  $scope.handleSignOutBtnClick = function() {
-      $auth.signOut()
-        .then(function(resp) {
-          // handle success response
-        })
-        .catch(function(resp) {
-          // handle error response
-        });
-    };
 })
+
+TweetersDigest.controller('IndexCtrl', function($scope, $auth) {
+  $scope.handleSignOutBtnClick = function() {
+    $auth.signOut()
+      .then(function(resp) {
+        console.log("logout successful!!")
+      })
+      .catch(function(resp) {
+        console.log("logout failure!!  :( ")
+      });
+  };
+});
+
+TweetersDigest.controller('GetTweets', function($scope, $auth, $http) {
+
+  var something = function(){
+    return $http.get("http://localhost:3000/getTweets")
+    .then(function(response){
+      return response.data
+      console.log(response)
+    });
+  }
+
+  $scope.getTweets = function(){
+    something().then(function(data){
+      debugger;
+      $scope.tweets = data
+    })
+  }
+});
+
+
 
 
