@@ -1,6 +1,6 @@
 (function(angular){
 
-  var TweetersDigest = angular.module('TweetersDigest', ['ng-token-auth']);
+  var TweetersDigest = angular.module('TweetersDigest', ['ng-token-auth', 'components']);
 
   TweetersDigest.config(function($authProvider) {
     $authProvider.configure({
@@ -46,11 +46,22 @@
 
     $scope.getTweets = function(){
       something().then(function(data){
-        debugger;
         $scope.tweets = data
       })
     }
   });
+
+  TweetersDigest.controller('CollectorController', function($scope, $auth) {
+    $scope.addCollector = function() {
+      $http.post("http://localhost:3000/collectors", {
+        params: { leader: $scope.leader, query: $scope.query }
+      })
+      .then(function(response){
+        return response
+      })
+    };
+  });
+
 
 })(angular)
 

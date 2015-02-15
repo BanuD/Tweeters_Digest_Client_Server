@@ -2,11 +2,14 @@
 <html ng-app="TweetersDigest">
 <head>
   <title>Tweeter's Digest</title>
+  <!--   NOTE: bootstrap included to hide unused panes.  Build custom css later.  -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="stylesheets/styles.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/angular-cookie/angular-cookie.js"></script>
   <script src="/bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
+  <script type="text/javascript" src="js/components.js"></script>
   <script type="text/javascript" src="js/tweeters_digest.js"></script>
 </head>
 <body>
@@ -20,11 +23,31 @@
       Sign out
     </button>
   </div>
-  <div ng-controller="GetTweets">
-    <button class="btn btn-primary btn-lg" ng-click='getTweets()'>
-      Gimme some tweets
-    </button>
-  </div>
+  <tabs>
+    <pane title="Stream">
+      <div ng-controller="GetTweets">
+        <button class="btn btn-primary btn-lg" ng-click='getTweets()'>
+          Gimme some tweets
+        </button>
+        <h2>My Tweets</h2>
+        <div ng-model="tweets">
+          <div ng-repeat="tweet in tweets">
+            {{tweet.text}}
+          </div>
+        </div>
+      </div>
+    </pane>
+    <pane title="Collectors">
+      <form ng-submit="addCollector()">
+        <label>I want to hear from</label>
+        <input type="text" ng-model="leader" placeholder="@target">
+        <label>...about...</label>
+        <input type="text" ng-model="query" placeholder="coupon">
+        <input type="submit" value="Create Collector">
+      </form>
+    </pane>
+  </tabs>
+
 </body>
 </html>
 
