@@ -3,6 +3,7 @@
 <head>
   <title>Tweeter's Digest</title>
   <link href="stylesheets/styles.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/angular-cookie/angular-cookie.js"></script>
   <script src="/bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
@@ -10,11 +11,18 @@
 </head>
 <body>
   <div ng-controller="loginController">
-    <button ng-click="authenticate('twitter')">
+    <button ng-click="handleBtnClick()">
       Sign in with Twitter
     </button>
-    <button class="btn btn-primary btn-lg" ng-click='signOut()'>
+  </div>
+  <div ng-controller="IndexCtrl">
+    <button class="btn btn-primary btn-lg" ng-click='handleSignOutBtnClick()'>
       Sign out
+    </button>
+  </div>
+  <div ng-controller="GetTweets">
+    <button class="btn btn-primary btn-lg" ng-click='getTweets()'>
+      Gimme some tweets
     </button>
   </div>
 </body>

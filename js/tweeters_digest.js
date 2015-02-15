@@ -1,16 +1,18 @@
-var TweetersDigest = angular.module('TweetersDigest', ['ng-token-auth']);
+(function(angular){
 
-TweetersDigest.config(function($authProvider) {
-  $authProvider.configure({
-    apiUrl: 'http://localhost:3000',
-    authProviderPaths: {
-      twitter: '/auth/twitter'
-    }
+  var TweetersDigest = angular.module('TweetersDigest', ['ng-token-auth']);
+
+  TweetersDigest.config(function($authProvider) {
+    $authProvider.configure({
+      apiUrl: 'http://localhost:3000',
+      authProviderPaths: {
+        twitter: '/auth/twitter'
+      }
+    });
   });
-});
 
-TweetersDigest.controller('loginController', function($scope, $http, $auth){
-  $scope.handleBtnClick = function() {
+  TweetersDigest.controller('loginController', function($scope, $http, $auth){
+    $scope.handleBtnClick = function() {
       $auth.authenticate('twitter')
         .then(function(resp) {
           console.log("success!!")
@@ -18,17 +20,39 @@ TweetersDigest.controller('loginController', function($scope, $http, $auth){
         .catch(function(resp) {
           console.log("failure!!  :( ")
         });
-  };
+    };
+  });
 
-  $scope.handleSignOutBtnClick = function() {
+  TweetersDigest.controller('IndexCtrl', function($scope, $auth) {
+    $scope.handleSignOutBtnClick = function() {
       $auth.signOut()
         .then(function(resp) {
-          // handle success response
+          console.log("logout successful!!")
         })
         .catch(function(resp) {
-          // handle error response
+          console.log("logout failure!!  :( ")
         });
     };
-})
+  });
+
+  TweetersDigest.controller('GetTweets', function($scope, $auth, $http) {
+    var something = function(){
+      return $http.get("http://localhost:3000/getTweets")
+      .then(function(response){
+        return response.data
+        console.log(response)
+      });
+    }
+
+    $scope.getTweets = function(){
+      something().then(function(data){
+        debugger;
+        $scope.tweets = data
+      })
+    }
+  });
+
+})(angular)
+
 
 
