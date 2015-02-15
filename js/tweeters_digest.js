@@ -16,8 +16,6 @@
       $auth.authenticate('twitter')
         .then(function(resp) {
           console.log("success!!")
-           // cookie = resp
-          // console.log(resp)
         })
         .catch(function(resp) {
           console.log("failure!!  :( ")
