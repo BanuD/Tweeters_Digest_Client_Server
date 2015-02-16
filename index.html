@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="TweetersDigest">
+<html ng-app="app">
 <head>
   <title>Tweeter's Digest</title>
   <!--   NOTE: bootstrap included to hide unused panes.  Build custom css later.  -->
@@ -9,10 +9,17 @@
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/angular-cookie/angular-cookie.js"></script>
   <script src="/bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script type="text/javascript" src="js/components.js"></script>
-  <script type="text/javascript" src="js/tweeters_digest.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/controllers/streamController.js"></script>
+  <script type="text/javascript" src="js/controllers/collectorController.js"></script>
+
 </head>
 <body>
+  <div ui-view></div>
+  <a ui-sref="stream">Stream</a>
+  <a ui-sref="collectors">Collectors</a>
   <div ng-controller="loginController">
     <button ng-click="handleBtnClick()">
       Sign in with Twitter
@@ -23,31 +30,6 @@
       Sign out
     </button>
   </div>
-  <tabs>
-    <pane title="Stream">
-      <div ng-controller="GetTweets">
-        <button class="btn btn-primary btn-lg" ng-click='getTweets()'>
-          Gimme some tweets
-        </button>
-        <h2>My Tweets</h2>
-        <div ng-model="tweets">
-          <div ng-repeat="tweet in tweets">
-            {{tweet.text}}
-          </div>
-        </div>
-      </div>
-    </pane>
-    <pane title="Collectors">
-      <form ng-submit="addCollector()">
-        <label>I want to hear from</label>
-        <input type="text" ng-model="leader" placeholder="@target">
-        <label>...about...</label>
-        <input type="text" ng-model="query" placeholder="coupon">
-        <input type="submit" value="Create Collector">
-      </form>
-    </pane>
-  </tabs>
-
 </body>
 </html>
 
