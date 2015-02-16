@@ -1,0 +1,10 @@
+<button class="btn btn-primary btn-lg" ng-click='stream.getTweets()'>
+  Gimme some tweets
+</button>
+<h2>My Tweets</h2>
+<div ng-model="tweets">
+  <div ng-repeat="tweet in stream.tweets">
+    {{tweet.text}}
+  </div>
+</div>
+
