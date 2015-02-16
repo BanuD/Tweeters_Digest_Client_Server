@@ -16,9 +16,27 @@
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
+
+      .state('/', {
+        url: '/',
+        templateUrl: 'views/landing.html'
+      })
+
       .state('stream', {
         url: "/stream",
-        templateUrl: "views/partials/stream.html"
+        resolve: {
+          tweets: function (TweetFactory) {
+            return TweetFactory.fetchTweets().then(function(data){
+              console.log('resolve', data)
+              return data;
+            }, function(error) {
+              return 'Something';
+            })
+          }
+        },
+        templateUrl: "views/partials/stream.html",
+        controller: "streamController",
+        controllerAs: "stream"
       })
       // .state('state1.list', {
       //   url: "/list",
@@ -40,11 +58,12 @@
       // });
   });
 
-  angular.module('app').controller('loginController', function($scope, $http, $auth){
+  angular.module('app').controller('loginController', function($scope, $http, $auth, $state){
     $scope.handleBtnClick = function() {
       $auth.authenticate('twitter')
         .then(function(resp) {
           console.log("success!!")
+          $state.go('stream')
         })
         .catch(function(resp) {
           console.log("failure!!  :( ")

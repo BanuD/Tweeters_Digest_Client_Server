@@ -1,4 +1,4 @@
-angular.module('app').controller('CollectorController', function() {
+angular.module('app').controller('CollectorController', ["$http",  function($http) {
   var vm = this;
 
   vm.collectors = [];
@@ -13,4 +13,4 @@ angular.module('app').controller('CollectorController', function() {
       vm.query = '';
     })
   };
-});
+}]);
