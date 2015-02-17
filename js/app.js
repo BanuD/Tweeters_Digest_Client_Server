@@ -47,6 +47,14 @@
             }, function(error) {
               return 'Something';
             })
+          },
+          gatherings: function (GatheringsFactory) {
+            return GatheringsFactory.fetchGatherings().then(function(data){
+              console.log('resolve', data)
+              return data;
+            }, function(error) {
+              return 'Something';
+            })
           }
         },
         templateUrl: "views/partials/gatherings.html",
