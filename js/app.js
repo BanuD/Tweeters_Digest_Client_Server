@@ -1,6 +1,6 @@
 (function(angular){
 
-  angular.module('app', ['ng-token-auth', 'components', 'ui.router']);
+  angular.module('app', ['ng-token-auth', 'ui.router', 'ngCookies']);
 
   angular.module('app').config(function($authProvider) {
     $authProvider.configure({
@@ -16,7 +16,6 @@
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
-
       .state('/', {
         url: '/',
         templateUrl: 'views/landing.html'
@@ -38,16 +37,21 @@
         controller: "streamController",
         controllerAs: "stream"
       })
-      // .state('state1.list', {
-      //   url: "/list",
-      //   templateUrl: "partials/state1.list.html",
-      //   controller: function($scope) {
-      //     $scope.items = ["A", "List", "Of", "Items"];
-      //   }
-      // })
       .state('collectors', {
         url: "/collectors",
-        templateUrl: "views/partials/collectors.html"
+        resolve: {
+          leaders: function (LeaderFactory) {
+            return LeaderFactory.fetchLeaders().then(function(data){
+              console.log('resolve', data)
+              return data;
+            }, function(error) {
+              return 'Something';
+            })
+          }
+        },
+        templateUrl: "views/partials/collectors.html",
+        controller: "collectorsController",
+        controllerAs: "collectors",
       })
       // .state('state2.list', {
       //   url: "/list",
@@ -57,34 +61,6 @@
       //   }
       // });
   });
-
-  angular.module('app').controller('loginController', function($scope, $http, $auth, $state){
-    $scope.handleBtnClick = function() {
-      $auth.authenticate('twitter')
-        .then(function(resp) {
-          console.log("success!!")
-          $state.go('stream')
-        })
-        .catch(function(resp) {
-          console.log("failure!!  :( ")
-        });
-    };
-  });
-
-  angular.module('app').controller('IndexCtrl', function($scope, $auth) {
-    $scope.handleSignOutBtnClick = function() {
-      $auth.signOut()
-        .then(function(resp) {
-          console.log("logout successful!!")
-        })
-        .catch(function(resp) {
-          console.log("logout failure!!  :( ")
-        });
-    };
-  });
-
-
-
 
 })(angular)
 

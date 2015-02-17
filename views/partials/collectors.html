@@ -1,7 +1,17 @@
-<form ng-submit="addCollector()">
-  <label>I want to hear from</label>
-  <input type="text" ng-model="leader" placeholder="@target">
+<!-- <a ui-sref="stream">Stream</a>
+<a ui-sref="collectors">Collectors</a> -->
+
+<form ng-submit="collectors.addCollector()">
+  <label>I want to hear from...</label>
+  <select ng-options="leader.id as leader.handle for leader in collectors.leaders" ng-model="collectors.selected_leader"></select>
+  <!-- <input type="text" ng-model="leader" placeholder="@target"> -->
   <label>...about...</label>
-  <input type="text" ng-model="query" placeholder="coupon">
+  <input type="text" ng-model="collectors.query" placeholder="coupon">
   <input type="submit" value="Create Collector">
 </form>
+
+<ul>
+  <li ng-repeat="banana in collectors.userCollectors">
+    {{ banana.leader_id + '  ' + banana.query }}
+  </li>
+</ul>
