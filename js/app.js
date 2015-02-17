@@ -37,8 +37,8 @@
         controller: "streamController",
         controllerAs: "stream"
       })
-      .state('collectors', {
-        url: "/collectors",
+      .state('gatherings', {
+        url: "/gatherings",
         resolve: {
           leaders: function (LeaderFactory) {
             return LeaderFactory.fetchLeaders().then(function(data){
@@ -49,9 +49,9 @@
             })
           }
         },
-        templateUrl: "views/partials/collectors.html",
-        controller: "collectorsController",
-        controllerAs: "collectors",
+        templateUrl: "views/partials/gatherings.html",
+        controller: "gatheringsController",
+        controllerAs: "gatherings",
       })
       // .state('state2.list', {
       //   url: "/list",
