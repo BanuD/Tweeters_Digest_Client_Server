@@ -5,9 +5,9 @@
   Gimme some tweets
 </button> -->
 <h2>My Tweets</h2>
-<div ng-model="tweets">
-  <div ng-repeat="tweet in stream.tweets">
-    {{tweet.text}}
+<div ng-repeat="tweets_from_collector in stream.tweets_container.tweets">
+  <div ng-repeat="tweet_obj in tweets_from_collector">
+    {{tweet_obj.content}}
   </div>
 </div>
 

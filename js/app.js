@@ -24,7 +24,7 @@
       .state('stream', {
         url: "/stream",
         resolve: {
-          tweets: function (TweetFactory) {
+          tweets_container: function (TweetFactory) {
             return TweetFactory.fetchTweets().then(function(data){
               console.log('resolve', data)
               return data;
