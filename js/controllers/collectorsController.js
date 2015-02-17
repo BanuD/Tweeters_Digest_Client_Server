@@ -2,8 +2,8 @@ angular.module('app').controller('collectorsController', ["$http", 'leaders', '$
   var vm = this;
   vm.leaders = leaders
   // vm.leaders = [{id: 1, handle: "@jennnnn"}, {id: 2, handle: "@danimalkelley"}]
-  // vm.selected_leader = vm.leaders[0]
-  vm.userCollectors = [{leader_id: 453, query: "some thoughts on cats"}, {leader_id: 333, query: "twitter stuff"}];
+  vm.selected_leader = vm.leaders[0]
+  // vm.userCollectors = [{leader_id: 453, query: "some thoughts on cats"}, {leader_id: 333, query: "twitter stuff"}];
   vm.addCollector = function() {
     var url = "http://localhost:3000/" + $cookieStore.get('current_user').id + "/collectors"
     $http.post(url, {
