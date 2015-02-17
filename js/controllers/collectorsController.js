@@ -1,6 +1,7 @@
-angular.module('app').controller('CollectorController', ["$http", 'leaders',  function($http, leaders) {
+angular.module('app').controller('collectorsController', ["$http", 'leaders',  function($http, leaders) {
   var vm = this;
-  vm.leaders = leaders
+  // vm.leaders = leaders
+  vm.leaders = [{id: 1, handle: "@jennnnn"}, {id: 2, handle: "@danimalkelley"}]
 
   vm.collectors = [];
   vm.addCollector = function() {

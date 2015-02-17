@@ -3,7 +3,7 @@
 
 <form ng-submit="collectors.addCollector()">
   <label>I want to hear from</label>
-  <select ng-options="leader.handle as leader.id for leader in collector.leaders track by leader.id" ng-model="selected">
+  <select ng-options="leader.handle as leader.id for leader in collectors.leaders" ng-model="selected"></select>
   <!-- <input type="text" ng-model="leader" placeholder="@target"> -->
   <label>...about...</label>
   <input type="text" ng-model="query" placeholder="coupon">
