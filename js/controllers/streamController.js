@@ -1,4 +1,4 @@
-angular.module('app').controller('streamController', ["$http", 'TweetFactory', 'tweets', '$cookieStore', function($http, TweetFactory, tweets, $cookieStore) {
+angular.module('app').controller('streamController', ["$http", 'TweetFactory', 'tweets_container', '$cookieStore', function($http, TweetFactory, tweets_container, $cookieStore) {
   var vm = this;
   // vm.getTweets = function(){
   //   console.log('inside the getTweets function')
@@ -14,7 +14,7 @@ angular.module('app').controller('streamController', ["$http", 'TweetFactory', '
   // }
   console.log("CURRENT_USER", $cookieStore.get('current_user'))
   // console.log('TWEETS INSIDE CONTROLLER',tweets);
-  vm.tweets = tweets;
+  vm.tweets_container = tweets_container;
 }])
 
 .factory('TweetFactory', ['$http', '$q', '$cookieStore', function ($http, $q, $cookieStore) {
