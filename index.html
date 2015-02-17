@@ -18,7 +18,17 @@
 
 </head>
 <body>
-  <div ui-view></div>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li ui-sref-active="active"><a ui-sref="stream">Stream</a></li>
+          <li ui-sref-active="active"><a ui-sref="collectors">Collectors</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div ui-view style='margin-top: 10rem;'></div>
 </body>
 </html>
 
