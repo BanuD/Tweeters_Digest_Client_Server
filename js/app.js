@@ -39,16 +39,16 @@
       })
       .state('collectors', {
         url: "/collectors",
-        // resolve: {
-        //   leaders: function (LeaderFactory) {
-        //     return LeaderFactory.fetchLeaders().then(function(data){
-        //       console.log('resolve', data)
-        //       return data;
-        //     }, function(error) {
-        //       return 'Something';
-        //     })
-        //   }
-        // },
+        resolve: {
+          leaders: function (LeaderFactory) {
+            return LeaderFactory.fetchLeaders().then(function(data){
+              console.log('resolve', data)
+              return data;
+            }, function(error) {
+              return 'Something';
+            })
+          }
+        },
         templateUrl: "views/partials/collectors.html",
         controller: "collectorsController",
         controllerAs: "collectors",

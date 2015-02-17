@@ -1,15 +1,16 @@
-angular.module('app').controller('collectorsController', ["$http", 'leaders',  function($http, leaders) {
+angular.module('app').controller('collectorsController', ["$http", 'leaders', '$rootScope', function($http, leaders, $rootScope) {
   var vm = this;
-  // vm.leaders = leaders
-  vm.leaders = [{id: 1, handle: "@jennnnn"}, {id: 2, handle: "@danimalkelley"}]
-
-  vm.collectors = [];
+  vm.leaders = leaders
+  // vm.leaders = [{id: 1, handle: "@jennnnn"}, {id: 2, handle: "@danimalkelley"}]
+  // vm.selected_leader = vm.leaders[0]
+  vm.userCollectors = [{leader_id: 453, query: "some thoughts on cats"}, {leader_id: 333, query: "twitter stuff"}];
   vm.addCollector = function() {
-    $http.post("http://localhost:3000/collectors", {
-      params: { leader: vm.leader, query: vm.query }
+    var url = "http://localhost:3000/" + $rootScope.current_user.id + "/collectors"
+    $http.post(url, {
+      params: { leader_id: vm.selected_leader, query: vm.query }
     })
     .then(function(data){
-      vm.collectors.push(data)
+      vm.userCollectors.push(data)
       //To clear the entered values from the form
       vm.leader = '';
       vm.query = '';
