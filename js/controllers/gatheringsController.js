@@ -1,15 +1,15 @@
-angular.module('app').controller('collectorsController', ["$http", 'leaders', '$cookieStore', function($http, leaders, $cookieStore) {
+angular.module('app').controller('gatheringsController', ["$http", 'leaders', '$cookieStore', function($http, leaders, $cookieStore) {
   var vm = this;
   vm.leaders = leaders;
   vm.query = "";
   // vm.leaders = [{id: 1, handle: "@jennnnn"}, {id: 2, handle: "@danimalkelley"}]
-  vm.selected_leader = vm.leaders[0];
-  // vm.userCollectors = [{leader_id: 453, query: "some thoughts on cats"}, {leader_id: 333, query: "twitter stuff"}];
-  vm.addCollector = function() {
-    var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/collectors"
-    $http.post(url, { leader_id: vm.selected_leader.id, query: vm.query })
+  vm.selected_leader = vm.leaders[0]
+  // vm.userGatherings = [{leader_id: 453, query: "some thoughts on cats"}, {leader_id: 333, query: "twitter stuff"}];
+  vm.addGathering = function() {
+    var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/gatherings"
+    $http.post(url, {leader_id: vm.selected_leader.id, query: vm.query })
     .then(function(data){
-      vm.userCollectors.push(data)
+      vm.userGatherings.push(data)
       //To clear the entered values from the form
       vm.leader = '';
       vm.query = '';
