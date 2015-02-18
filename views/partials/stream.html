@@ -1,12 +1,12 @@
 <!-- <a ui-sref="stream">Stream</a>
-<a ui-sref="collectors">Collectors</a> -->
+<a ui-sref="gatherings">Gatherings</a> -->
 
 <!-- <button class="btn btn-primary btn-lg" ng-click='stream.getTweets()'>
   Gimme some tweets
 </button> -->
 <h2>My Tweets</h2>
-<div ng-repeat="tweets_from_collector in stream.tweets_container.tweets">
-  <div ng-repeat="tweet_obj in tweets_from_collector">
+<div ng-repeat="tweets_from_gathering in stream.tweets_container.tweets">
+  <div ng-repeat="tweet_obj in tweets_from_gathering">
     {{tweet_obj.content}}
   </div>
 </div>
