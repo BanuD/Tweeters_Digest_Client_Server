@@ -4,16 +4,16 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
   vm.selected_leader = vm.leaders[0]
   vm.userGatherings = gatherings.gatherings;
 
-  var myfunc = function(){
-    for(var i = 0; i < vm.userGatherings.length; i++){
-      if(vm.userGatherings[i].leader_id == vm.selected_leader.id ) {
-        return vm.userGatherings[i].query
-      }
-    }
-  }
+  // var myfunc = function(){
+  //   for(var i = 0; i < vm.userGatherings.length; i++){
+  //     if(vm.userGatherings[i].leader_id == vm.selected_leader.id ) {
+  //       return vm.userGatherings[i].query
+  //     }
+  //   }
+  // }
   // vm.leadersGatherings = function(){
 
-  vm.selected_query = myfunc();
+  // vm.selected_query = ""
   // }
 
   // vm.query = leadersGatherings()[vm.selected_leader.id]['query']
@@ -23,26 +23,25 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
 
   // vm.query = getLeaderQuery(vm.selected_leader);
 
-  vm.deleteGathering = function(gathering_id){
-    console.log('inside deleteGathering')
-    // var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/gatherings"
-    // $http.delete(url)
-    // .then(function(response){
-    //   vm.userGatherings.remove(response.data.gathering)
-    //   //To clear the entered values from the form
-    //   // vm.leader = '';
-    //   // vm.query = '';
-    // })
+  vm.modifyGathering = function(gathering_id){
+    // console.log('inside modifyGathering')
+    // for(var i = 0; i < vm.leaders.length; i++){
+    //   if(vm.leaders[i].id == gathering_id){
+    //     vm.selected_leader = vm.leaders[i];
+    //   }
+    // }
   }
 
   vm.addGathering = function() {
     var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/gatherings"
-    $http.post(url, {leader_id: vm.selected_leader.id, query: vm.query })
+    $http.post(url, {leader_id: vm.selected_leader.id, query: vm.selected_leader.query })
     .then(function(response){
+      for(var i = 0; i < vm.userGatherings.length; i++){
+        if(vm.userGatherings[i].id == response.data.gathering.id) {
+          vm.userGatherings.splice(i, 1)
+        }
+      }
       vm.userGatherings.push(response.data.gathering)
-      //To clear the entered values from the form
-      // vm.leader = '';
-      // vm.query = '';
     })
   };
 }])
