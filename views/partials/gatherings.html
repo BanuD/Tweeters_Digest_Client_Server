@@ -6,12 +6,13 @@
   <select ng-options="leader as leader.handle for leader in gatherings.leaders" ng-model="gatherings.selected_leader"></select>
   <!-- <input type="text" ng-model="leader" placeholder="@target"> -->
   <label>...about...</label>
-  <input type="text" ng-model="gatherings.query" placeholder="coupon">
+  <input type="text" ng-model="gatherings.selected_query" placeholder="coupon">
   <input type="submit" value="Create Gathering">
 </form>
 
 <ul>
   <li ng-repeat="gathering in gatherings.userGatherings">
-    {{ gathering.leader_id + '  ' + gathering.query }}
+    {{ gathering.leader_handle + ':  ' + gathering.query }}
+    <button ng-click='gatherings.deleteGathering(gathering.id)'></button>
   </li>
 </ul>
