@@ -23,13 +23,13 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
 
   // vm.query = getLeaderQuery(vm.selected_leader);
 
-  vm.modifyGathering = function(gathering_id){
-    // console.log('inside modifyGathering')
-    // for(var i = 0; i < vm.leaders.length; i++){
-    //   if(vm.leaders[i].id == gathering_id){
-    //     vm.selected_leader = vm.leaders[i];
-    //   }
-    // }
+  vm.modifyGathering = function(gathering_leader_id){
+    console.log('inside modifyGathering')
+    for(var i = 0; i < vm.leaders.length; i++){
+      if(vm.leaders[i].id == gathering_leader_id){
+        vm.selected_leader = vm.leaders[i];
+      }
+    }
   }
 
   vm.addGathering = function() {
