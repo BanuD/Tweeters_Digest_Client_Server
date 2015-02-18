@@ -6,8 +6,8 @@
 </button> -->
 <h2>My Tweets</h2>
 <div ng-repeat="tweets_from_gathering in stream.tweets_container.tweets">
-  <div ng-repeat="tweet_obj in tweets_from_gathering">
+  <blockquote ng-repeat="tweet_obj in tweets_from_gathering" class="twitter-tweet">
     {{tweet_obj.content}}
-  </div>
+  </blockquote>
 </div>
 
