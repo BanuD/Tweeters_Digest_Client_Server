@@ -4,25 +4,6 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
   vm.selected_leader = vm.leaders[0]
   vm.userGatherings = gatherings.gatherings;
 
-  // var myfunc = function(){
-  //   for(var i = 0; i < vm.userGatherings.length; i++){
-  //     if(vm.userGatherings[i].leader_id == vm.selected_leader.id ) {
-  //       return vm.userGatherings[i].query
-  //     }
-  //   }
-  // }
-  // vm.leadersGatherings = function(){
-
-  // vm.selected_query = ""
-  // }
-
-  // vm.query = leadersGatherings()[vm.selected_leader.id]['query']
-  // vm.getLeaderQuery = function(leader){
-
-  // }
-
-  // vm.query = getLeaderQuery(vm.selected_leader);
-
   vm.modifyGathering = function(gathering_leader_id){
     console.log('inside modifyGathering')
     for(var i = 0; i < vm.leaders.length; i++){
