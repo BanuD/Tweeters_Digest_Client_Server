@@ -18,7 +18,7 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
     $http.post(url, {leader_id: vm.selected_leader.id, query: vm.selected_leader.query })
     .then(function(response){
       for(var i = 0; i < vm.userGatherings.length; i++){
-        if(vm.userGatherings[i].id == response.data.gathering.id) {
+        if(vm.userGatherings[i].leader_id == response.data.gathering.leader_id) {
           vm.userGatherings.splice(i, 1)
         }
       }

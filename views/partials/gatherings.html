@@ -9,10 +9,50 @@
   <input type="text" ng-model="gatherings.selected_leader.query">
   <input type="submit" value="Add/Modify Gathering">
 </form>
+<div ng-click="showIt = !showIt">Show Stuff</div>
+<div ng-show="showIt"> Operator Finds tweets...
+twitter search  containing both "twitter" and "search". This is the default operator.
+"happy hour"  containing the exact phrase "happy hour".
+love OR hate  containing either "love" or "hate" (or both).
+beer -root  containing "beer" but not "root".
+#haiku  containing the hashtag "haiku".
+from:alexiskold sent from person "alexiskold".
+to:techcrunch sent to person "techcrunch".
+@mashable referencing person "mashable".
+"happy hour" near:"san francisco" containing the exact phrase "happy hour" and sent near "san francisco".
+near:NYC within:15mi  sent within 15 miles of "NYC".
+superhero since:2010-12-27  containing "superhero" and sent since date "2010-12-27" (year-month-day).
+ftw until:2010-12-27  containing "ftw" and sent up to date "2010-12-27".
+movie -scary :) containing "movie", but not "scary", and with a positive attitude.
+flight :( containing "flight" and with a negative attitude.
+traffic ? containing "traffic" and asking a question.
+hilarious filter:links  containing "hilarious" and linking to URLs.
+news source:twitterfeed containing "news" and entered via TwitterFeed </div>
 
-<ul>
+<div class="container">
+  <div ng-repeat="gathering in gatherings.userGatherings" class="col-md-4">
+    <div class="gathering">
+      I want to hear from <button ng-click='gatherings.modifyGathering(gathering.leader_id)'>{{gathering.leader_handle}}</button> about
+      <span class="strong">{{gathering.query}}</span><br>
+      Percent Gathered: {{gathering.ratio*100}}%
+
+
+      <div class="progress">
+<!-- 75 - 100 percent is not yet working -->
+        <div class="progress-bar" ng-class="{'progress-bar-success': gathering.ratio*100 < 25, 'progress-bar-info': if(25 < gathering.ratio*100 && gathering.ratio*100 < 50), 'progress-bar-warning': if(50 < gathering.ratio*100 && gathering.ratio*100 < 75), 'progress-bar-danger': if(75 < gathering.ratio*100 && gathering.ratio*100 <= 100)}" role="progressbar" aria-valuenow="{{gathering.ratio*100}}"
+        aria-valuemin="0" aria-valuemax="100" style="width:{{gathering.ratio*100}}%">
+          {{gathering.ratio*100}}% Collected
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- <ul>
   <li ng-repeat="gathering in gatherings.userGatherings">
     <button ng-click='gatherings.modifyGathering(gathering.leader_id)'>{{gathering.leader_handle}}</button>
     {{gathering.query}}
   </li>
-</ul>
+</ul> -->
