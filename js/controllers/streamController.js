@@ -20,7 +20,7 @@ angular.module('app').controller('streamController', ["$http", 'TweetFactory', '
 .factory('TweetFactory', ['$http', '$q', '$cookieStore', function ($http, $q, $cookieStore) {
   function fetchTweets () {
     var d = $q.defer();
-    var url = "http://tweeters-digest-api.herokuapp.com/" + $cookieStore.get('current_user').id + "/tweets"
+    var url = "https://tweeters-digest-api.herokuapp.com/users/" + $cookieStore.get('current_user').id + "/tweets"
     console.log('The url is:', url)
     $http.get(url)
     .success(function(response){

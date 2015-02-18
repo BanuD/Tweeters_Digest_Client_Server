@@ -36,7 +36,7 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
   }
 
   vm.addGathering = function() {
-    var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/gatherings"
+    var url = "https://tweeters-digest-api.herokuapp.com/users/" + $cookieStore.get('current_user').id + "/gatherings"
     $http.post(url, {leader_id: vm.selected_leader.id, query: vm.query })
     .then(function(response){
       vm.userGatherings.push(response.data.gathering)
@@ -50,7 +50,7 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
 .factory('LeaderFactory', ['$http', '$q', '$cookieStore', function ($http, $q, $cookieStore) {
   function fetchLeaders () {
     var d = $q.defer();
-    var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/leaders"
+    var url = "https://tweeters-digest-api.herokuapp.com/users/" + $cookieStore.get('current_user').id + "/leaders"
     console.log('The url is:', url)
     $http.get(url)
     .success(function(response){
@@ -69,7 +69,7 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
 .factory('GatheringsFactory', ['$http', '$q', '$cookieStore', function ($http, $q, $cookieStore) {
   function fetchGatherings () {
     var d = $q.defer();
-    var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/gatherings"
+    var url = "https://tweeters-digest-api.herokuapp.com/users/" + $cookieStore.get('current_user').id + "/gatherings"
     console.log('The url is:', url)
     $http.get(url)
     .success(function(response){

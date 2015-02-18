@@ -4,7 +4,7 @@
 
   angular.module('app').config(function($authProvider) {
     $authProvider.configure({
-      apiUrl: 'http://tweeters-digest-api.herokuapp.com/',
+      apiUrl: 'https://tweeters-digest-api.herokuapp.com/',
       authProviderPaths: {
         twitter: '/auth/twitter'
       }
