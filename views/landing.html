@@ -1,9 +1,13 @@
-  <div ng-controller="loginController">
-    <button ng-click="handleBtnClick()">
-      Sign in with Twitter
-    </button>
-    <button class="btn btn-primary btn-lg" ng-click='handleSignOutBtnClick()'>
-      Sign out
-    </button>
-  </div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h1 class="title text-center">Welcome to Tweeters Digest!</h1>
+      <div ng-controller="loginController">
+        <button class="btn btn-lg btn-info sign-in" ng-click="handleBtnClick()">
+          Sign in with Twitter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

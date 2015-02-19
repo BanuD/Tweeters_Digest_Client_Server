@@ -1,52 +1,77 @@
 <!-- <a ui-sref="stream">Stream</a>
 <a ui-sref="gatherings">Gatherings</a> -->
-
-<form ng-submit="gatherings.addGathering()">
-  <label>I want to hear from...</label>
-  <select ng-options="leader as leader.handle for leader in gatherings.leaders" ng-model="gatherings.selected_leader"></select>
-  <!-- <input type="text" ng-model="leader" placeholder="@target"> -->
-  <label>...about...</label>
-  <input type="text" ng-model="gatherings.selected_leader.query">
-  <button ng-click="showPhoneField = !showPhoneField">Add SMS Alert</button>
-  <input type="text" ng-show="showPhoneField" ng-model="gatherings.selected_leader.phone_number">
-  <input type="submit" value="Add/Modify Gathering">
-</form>
-<div ng-click="showIt = !showIt">Show Stuff</div>
-<div ng-show="showIt"> Operator Finds tweets...
-twitter search  containing both "twitter" and "search". This is the default operator.
-"happy hour"  containing the exact phrase "happy hour".
-love OR hate  containing either "love" or "hate" (or both).
-beer -root  containing "beer" but not "root".
-#haiku  containing the hashtag "haiku".
-from:alexiskold sent from person "alexiskold".
-to:techcrunch sent to person "techcrunch".
-@mashable referencing person "mashable".
-"happy hour" near:"san francisco" containing the exact phrase "happy hour" and sent near "san francisco".
-near:NYC within:15mi  sent within 15 miles of "NYC".
-superhero since:2010-12-27  containing "superhero" and sent since date "2010-12-27" (year-month-day).
-ftw until:2010-12-27  containing "ftw" and sent up to date "2010-12-27".
-movie -scary :) containing "movie", but not "scary", and with a positive attitude.
-flight :( containing "flight" and with a negative attitude.
-traffic ? containing "traffic" and asking a question.
-hilarious filter:links  containing "hilarious" and linking to URLs.
-news source:twitterfeed containing "news" and entered via TwitterFeed </div>
-
-<div class="container">
-  <div ng-repeat="gathering in gatherings.userGatherings" class="col-md-4">
-    <div class="gathering">
-      I want to hear from <button ng-click='gatherings.modifyGathering(gathering.leader_id)'>{{gathering.leader_handle}}</button> about
-      <span class="strong">{{gathering.query}}</span><br>
-      <br>
-      <div class="progress">
-        <div class="progress-bar" ng-class="{'progress-bar-success': gathering.ratio*100 < 33, 'progress-bar-danger': gathering.ratio*100 > 66}" role="progressbar" aria-valuenow="{{gathering.ratio*100}}"
-        aria-valuemin="0" aria-valuemax="100" style="width:{{gathering.ratio*100}}%">
-          {{gathering.ratio*100}}% Collected
-        </div>
-      </div>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-4">
+      <form class="form-group" ng-submit="gatherings.addGathering()">
+        <span class="dropdown-txt">I want to hear from </span>
+        <select ng-options="leader as leader.handle for leader in gatherings.leaders" ng-model="gatherings.selected_leader"></select>
+        <span class="dropdown-txt"> about </span>
+        <input type="text" ng-model="gatherings.selected_leader.query">
+        <button class="btn btn-sm btn-success" type="submit">Add/Modify Gathering</button>
+        <br>
+      </form>
     </div>
   </div>
 </div>
+
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <button class="btn btn-sm btn-success add-sms-btn" ng-click="showPhoneField = !showPhoneField">Add SMS Alert</button>
+        <input class="add-sms-btn" type="text" ng-show="showPhoneField" ng-model="gatherings.selected_leader.phone_number" placeholder="eg. (650) 123-5555">
+    <button class="btn btn-sm btn-info search-btn" ng-click="showIt = !showIt">Search Legend</button>
+    <br>
+    <div ng-show="showIt">
+      <table class="modal-table modal-table-bordered table-striped">
+        <thead>
+          <tr class="warning">
+            <td class="warning">Operator</td>
+            <td class="warning">Finds tweets...</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>twitter search</td><td>containing both "twitter" and "search". This is the default operator.</td></tr>
+          <tr><td><b>"</b>happy hour<b>"</b></td><td>containing the exact phrase "happy hour".</td></tr>
+          <tr><td>love <b>OR</b> hate</td><td>containing either "love" or "hate" (or both).</td></tr>
+          <tr><td>beer <b>-</b>root</td><td>containing "beer" but not "root".</td></tr>
+          <tr><td><b>#</b>haiku</td><td>containing the hashtag "haiku".</td></tr>
+          <tr><td><b>from:</b>alexiskold</td><td>sent from person "alexiskold".</td></tr>
+          <tr><td><b>to:</b>techcrunch</td><td>sent to person "techcrunch".</td></tr>
+          <tr><td><b>@</b>mashable</td><td>referencing person "mashable".</td></tr>
+          <tr><td>"happy hour" <b>near:</b>"san francisco"</td><td>containing the exact phrase "happy hour" and sent near "san francisco".</td></tr>
+          <tr><td><b>near:</b>NYC <b>within:</b>15mi</td><td>sent within 15 miles of "NYC".</td></tr>
+          <tr><td>superhero <b>since:</b>2010-12-27</td><td>containing "superhero" and sent since date "2010-12-27" (year-month-day).</td></tr>
+          <tr><td>ftw <b>until:</b>2010-12-27</td><td>containing "ftw" and sent up to date "2010-12-27".</td></tr>
+          <tr><td>movie -scary <b>:)</b></td><td>containing "movie", but not "scary", and with a positive attitude.</td></tr>
+          <tr><td>flight <b>:(</b></td><td>containing "flight" and with a negative attitude.</td></tr>
+          <tr><td>traffic <b>?</b></td><td>containing "traffic" and asking a question.</td></tr>
+          <tr><td>hilarious <b>filter:links</b></td><td>containing "hilarious" and linking to URLs.</td></tr>
+          <tr><td>news <b>source:twitterfeed</b></td><td>containing "news" and entered via TwitterFeed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br>
+
+<div ng-repeat="gathering in gatherings.userGatherings" class="col-md-4 col-md-offset-4">
+  <div class="gathering well">
+  <img src="{{gathering.leader_pic_url}}">
+    I want to hear from <button class="btn btn-xs btn-warning" ng-click='gatherings.modifyGathering(gathering.leader_id)'>{{gathering.leader_handle}}</button> about
+    <span class="bg-primary text-em">{{gathering.query}}</span><br>
+    <br>
+    <div class="progress">
+      <div class="progress-bar" ng-class="{'progress-bar-success': gathering.ratio*100 < 33, 'progress-bar-danger': gathering.ratio*100 > 66}" role="progressbar" aria-valuenow="{{gathering.ratio*100}}"
+      aria-valuemin="0" aria-valuemax="100" style="width:{{gathering.ratio*100}}%">
+        {{gathering.ratio*100}}% Collected
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <!-- <ul>
   <li ng-repeat="gathering in gatherings.userGatherings">
