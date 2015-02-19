@@ -22,15 +22,16 @@
     </blockquote>
   </div>
 </div> -->
-
-<div class="col-md-6 col-md-offset-3">
-  <blockquote ng-repeat="tweet_obj in stream.tweets_container.tweets" class="twitter-tweet">
-    <img ng-src="{{tweet_obj.leader_pic_url}}">
-    <a ng-href="{{tweet_obj.url}}">{{tweet_obj.content}}</a>
-    <br>
-    <br>
-    -@{{tweet_obj.handle}}  on {{tweet_obj.created_at | date:"MM/dd/yyyy 'at' h:mma"}}
-  </blockquote>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    <blockquote ng-repeat="tweet_obj in stream.tweets_container.tweets" class="twitter-tweet">
+      <img ng-src="{{tweet_obj.leader_pic_url}}">
+      <a ng-href="{{tweet_obj.url}}">{{tweet_obj.content}}</a>
+      <br>
+      <br>
+      -@{{tweet_obj.handle}}  on {{tweet_obj.created_at | date:"MM/dd/yyyy 'at' h:mma"}}
+    </blockquote>
+  </div>
 </div>
 
 
