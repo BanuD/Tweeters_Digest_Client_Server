@@ -42,8 +42,9 @@ blockquote.twitter-tweet a:focus {
   text-decoration: none;
   margin: 0 auto;
   padding: 15px;
-  margin-left: 20px;
-  width: 100px;
+  margin-left: 10px;
+  width: 110px;
+  z-index: 1;
 }
 
 .dropdown-txt {
@@ -79,9 +80,37 @@ blockquote.twitter-tweet a:focus {
 .sign-out {
   margin: 0 20px;
 }
-
+/*
 .nav-title {
   color: gray;
   font-size: 24px;
   margin: 25%;
 }
+
+.centered {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}*/
+
+.navbar-brand {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  z-index: -1;
+}
+
+.margin-sm {
+  margin: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+    .navbar-brand {
+      display: inline-block;
+      position: relative;
+    }
+  }
+
