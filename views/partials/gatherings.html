@@ -7,6 +7,8 @@
   <!-- <input type="text" ng-model="leader" placeholder="@target"> -->
   <label>...about...</label>
   <input type="text" ng-model="gatherings.selected_leader.query">
+  <button ng-click="showPhoneField = !showPhoneField">Add SMS Alert</button>
+  <input type="text" ng-show="showPhoneField" ng-model="gatherings.selected_leader.phone_number">
   <input type="submit" value="Add/Modify Gathering">
 </form>
 <div ng-click="showIt = !showIt">Show Stuff</div>
@@ -34,17 +36,13 @@ news source:twitterfeed containing "news" and entered via TwitterFeed </div>
     <div class="gathering">
       I want to hear from <button ng-click='gatherings.modifyGathering(gathering.leader_id)'>{{gathering.leader_handle}}</button> about
       <span class="strong">{{gathering.query}}</span><br>
-      Percent Gathered: {{gathering.ratio*100}}%
-
-
+      <br>
       <div class="progress">
-<!-- 75 - 100 percent is not yet working -->
-        <div class="progress-bar" ng-class="{'progress-bar-success': gathering.ratio*100 < 25, 'progress-bar-info': if(25 < gathering.ratio*100 && gathering.ratio*100 < 50), 'progress-bar-warning': if(50 < gathering.ratio*100 && gathering.ratio*100 < 75), 'progress-bar-danger': if(75 < gathering.ratio*100 && gathering.ratio*100 <= 100)}" role="progressbar" aria-valuenow="{{gathering.ratio*100}}"
+        <div class="progress-bar" ng-class="{'progress-bar-success': gathering.ratio*100 < 33, 'progress-bar-danger': gathering.ratio*100 > 66}" role="progressbar" aria-valuenow="{{gathering.ratio*100}}"
         aria-valuemin="0" aria-valuemax="100" style="width:{{gathering.ratio*100}}%">
           {{gathering.ratio*100}}% Collected
         </div>
       </div>
-
 
     </div>
   </div>

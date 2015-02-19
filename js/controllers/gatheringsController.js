@@ -13,9 +13,10 @@ angular.module('app').controller('gatheringsController', ["$http", 'leaders', 'g
     }
   }
 
+
   vm.addGathering = function() {
     var url = "http://localhost:3000/users/" + $cookieStore.get('current_user').id + "/gatherings"
-    $http.post(url, {leader_id: vm.selected_leader.id, query: vm.selected_leader.query })
+    $http.post(url, {leader_id: vm.selected_leader.id, query: vm.selected_leader.query, phone_number: vm.selected_leader.phone_number })
     .then(function(response){
       for(var i = 0; i < vm.userGatherings.length; i++){
         if(vm.userGatherings[i].leader_id == response.data.gathering.leader_id) {
