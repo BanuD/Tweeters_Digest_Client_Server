@@ -3,7 +3,6 @@ angular.module('app').controller('loginController', function($scope, $cookieStor
     $auth.authenticate('twitter')
       .then(function(resp) {
         $cookieStore.put('current_user', resp)
-        // $rootScope.current_user = resp; //adds current_user to the rootScope which is available everywhere that you pass it into
         console.log("success!!")
         $state.go('stream')
       })

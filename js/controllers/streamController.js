@@ -1,19 +1,7 @@
 angular.module('app').controller('streamController', ["$http", 'TweetFactory', 'tweets_container', '$cookieStore', function($http, TweetFactory, tweets_container, $cookieStore) {
   var vm = this;
-  // vm.getTweets = function(){
-  //   console.log('inside the getTweets function')
-  //   TweetFactory.fetchTweets().then(function(data){
-  //     console.log('DATA',data)
-  //     vm.tweets = data;
-  //     console.log('TWEETS', vm.tweets);
-  //   }, function (error) {
-  //     console.log(error);
-  //   })
-  // // vm.tweets = TweetFactory.fetchTweets();
-  // // console.log(vm.tweets);
-  // }
+
   console.log("CURRENT_USER", $cookieStore.get('current_user'))
-  // console.log('TWEETS INSIDE CONTROLLER',tweets);
   vm.tweets_container = tweets_container;
 }])
 
@@ -36,25 +24,3 @@ angular.module('app').controller('streamController', ["$http", 'TweetFactory', '
   }
 }]);
 
-
-
-
-
-
-
-
-// angular.module('app').controller('streamController', function($scope, $auth, $http) {
-//   var something = function(){
-//     return $http.get("http://localhost:3000/getTweets")
-//     .then(function(response){
-//       return response.data
-//       console.log(response)
-//     });
-//   }
-
-//   $scope.getTweets = function(){
-//     something().then(function(data){
-//       $scope.tweets = data
-//     })
-//   }
-// });
