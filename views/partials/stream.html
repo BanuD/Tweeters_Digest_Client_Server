@@ -24,7 +24,7 @@
 </div> -->
 
 <div class="col-md-6 col-md-offset-3">
-  <blockquote ng-repeat="tweet_obj in stream.tweets_container.tweets" class="twitter-tweet">
+  <blockquote ng-repeat="tweet_obj in stream.tweets_container.tweets[0]" class="twitter-tweet">
     <img ng-src="{{tweet_obj.leader_pic_url}}">
     <a ng-href="{{tweet_obj.url}}">{{tweet_obj.content}}</a>
     <br>
