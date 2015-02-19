@@ -43,7 +43,7 @@ blockquote.twitter-tweet a:focus {
   margin: 0 auto;
   padding: 15px;
   margin-left: 20px;
-  width: 165px;
+  width: 100px;
 }
 
 .dropdown-txt {
@@ -64,4 +64,24 @@ blockquote.twitter-tweet a:focus {
 
 .add-sms-btn {
   width: 100%;
+}
+
+.title {
+  font-size: 48px;
+  color: gray;
+}
+
+.sign-in {
+  margin: 40px 0;
+  width: 100%;
+}
+
+.sign-out {
+  margin: 0 20px;
+}
+
+.nav-title {
+  color: gray;
+  font-size: 24px;
+  margin: 25%;
 }

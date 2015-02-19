@@ -8,6 +8,7 @@
 <div class="container">
   <div ng-repeat="tweets_from_gathering in stream.tweets_container.tweets" class="col-md-6 col-md-offset-3">
     <blockquote ng-repeat="tweet_obj in tweets_from_gathering" class="twitter-tweet">
+      <img src="{{tweet_obj.leader_pic_url}}">
       <a href="{{tweet_obj.url}}">{{tweet_obj.content}}</a>
       <br>
       <br>
