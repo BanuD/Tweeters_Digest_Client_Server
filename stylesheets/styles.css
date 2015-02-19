@@ -1,6 +1,6 @@
-/** {
-  background-color: blue;
-}*/
+body {
+  font-family: 'Oxygen', sans-serif;
+}
 
 blockquote.twitter-tweet {
   display: inline-block;
@@ -16,6 +16,7 @@ blockquote.twitter-tweet {
   margin: 10px 5px;
   padding: 0 16px 16px 16px;
   max-width: 468px;
+  width: 100%;
 }
 
 blockquote.twitter-tweet p {
@@ -34,4 +35,33 @@ blockquote.twitter-tweet a {
 blockquote.twitter-tweet a:hover,
 blockquote.twitter-tweet a:focus {
   text-decoration: underline;
+}
+
+.nav-btn {
+  color: white;
+  text-decoration: none;
+  margin: 0 auto;
+  padding: 15px;
+  margin-left: 20px;
+  width: 165px;
+}
+
+.dropdown-txt {
+  font-size: 16px
+}
+
+.text-em {
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 4px;
+
+}
+
+.search-btn {
+  width: 100%;
+}
+
+.add-sms-btn {
+  width: 100%;
 }

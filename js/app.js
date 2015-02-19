@@ -1,6 +1,6 @@
 (function(angular){
 
-  angular.module('app', ['ng-token-auth', 'ui.router', 'ngCookies']);
+  angular.module('app', ['ng-token-auth', 'ui.router', 'ngCookies', 'ui.bootstrap']);
 
   angular.module('app').config(function($authProvider) {
     $authProvider.configure({
