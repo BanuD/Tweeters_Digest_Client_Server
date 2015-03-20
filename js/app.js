@@ -1,15 +1,34 @@
 (function(angular){
 
-  angular.module('app', ['ng-token-auth', 'ui.router', 'ngCookies', 'ui.bootstrap']);
+  angular.module('app', ['auth0', 'angular-storage', 'angular-jwt', 'ng-token-auth', 'ui.router', 'ngCookies', 'ui.bootstrap'])
+    .config(function (authProvider, $routeProvider, $httpProvider, jwtInterceptorProvider) {
+      authProvider.init({
+      domain: 'tweetersdigestrilke.auth0.com',
+      clientID: '2QZm3SZfyqqZbIRDUwyXYjYID0qP9yf5'
+      });
+      jwtInterceptorProvider.tokenGetter = ['store', function(store) {
+        // Return the saved token
+        return store.get('token');
+      }];
 
-  angular.module('app').config(function($authProvider) {
-    $authProvider.configure({
-      apiUrl: 'http://localhost:3000',
-      authProviderPaths: {
-        twitter: '/auth/twitter'
-      }
-    });
-  });
+      $httpProvider.interceptors.push('jwtInterceptor');
+    })
+    .run(function($rootScope, auth, store, jwtHelper, $location) {
+      $rootScope.$on('$locationChangeStart', function() {
+        if (!auth.isAuthenticated) {
+          var token = store.get('token');
+          if (token) {
+            if (!jwtHelper.isTokenExpired(token)) {
+              auth.authenticate(store.get('profile'), token);
+            } else {
+              $location.path('/login');
+            }
+          }
+        }
+
+      });
+    })
+
 
   angular.module('app').config(function($stateProvider, $urlRouterProvider) {
     // For any unmatched url, redirect to /

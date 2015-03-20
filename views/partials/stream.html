@@ -1,27 +1,13 @@
-<!-- <a ui-sref="stream">Stream</a>
-<a ui-sref="gatherings">Gatherings</a> -->
 
-<!-- <button class="btn btn-primary btn-lg" ng-click='stream.getTweets()'>
-  Gimme some tweets
-</button> -->
-<!-- <h2>My Tweets</h2> -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <button class="btn btn-success nav-btn" ui-sref-active="active" ui-sref="stream">Stream</button>
   <button class="btn btn-warning nav-btn" ui-sref-active="active" ui-sref="gatherings">Subscriptions</button>
   <div class="navbar-brand">Tweeter Digest</div>
-  <button class="btn btn-danger nav-btn nav navbar-nav navbar-right sign-out" ng-click='handleSignOutBtnClick()'>Sign out</button>
-</nav>
-<!-- <div class="container">
-  <div ng-repeat="tweets_from_gathering in stream.tweets_container.tweets" class="col-md-6 col-md-offset-3">
-    <blockquote ng-repeat="tweet_obj in tweets_from_gathering" class="twitter-tweet">
-       <img ng-src="{{tweet_obj.leader_pic_url}}" class="margin-sm img-rounded">
-      <a href="{{tweet_obj.url}}">{{tweet_obj.content}}</a>
-      <br>
-      <br>
-      -@{{tweet_obj.handle}}
-    </blockquote>
+  <div ng-controller="loginController">
+    <button class="btn btn-danger nav-btn nav navbar-nav navbar-right sign-out" ng-click='logout()'>Sign out</button>
   </div>
-</div> -->
+</nav>
+
 <div class="container">
   <div class="col-md-6 col-md-offset-3">
     <blockquote ng-repeat="tweet_obj in stream.tweets_container.tweets" class="twitter-tweet">

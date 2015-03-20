@@ -4,7 +4,9 @@
   <button class="btn btn-success nav-btn" ui-sref-active="active" ui-sref="stream">Stream</button>
   <button class="btn btn-warning nav-btn" ui-sref-active="active" ui-sref="gatherings">Subscriptions</button>
   <div class="navbar-brand">Tweeter Digest</div>
-  <button class="btn btn-danger nav-btn nav navbar-nav navbar-right sign-out" ng-click='handleSignOutBtnClick()'>Sign out</button>
+  <div ng-controller="loginController">
+    <button class="btn btn-danger nav-btn nav navbar-nav navbar-right sign-out" ng-click='logout()'>Sign out</button>
+  </div>
 </nav>
 <div class="container-fluid">
   <div class="row">
